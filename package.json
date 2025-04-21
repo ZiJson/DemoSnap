@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "DemoSnap",
   "private": true,
   "scripts": {
     "build": "turbo run build",
