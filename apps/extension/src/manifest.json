@@ -1,6 +1,7 @@
 {
   "{{chrome}}.manifest_version": 3,
   "{{firefox}}.manifest_version": 2,
+  "permissions": ["tabCapture", "activeTab", "desktopCapture", "scripting"],
   "icons": {
     "16": "icon/16.png",
     "32": "icon/32.png",
@@ -8,14 +9,26 @@
     "96": "icon/96.png",
     "128": "icon/128.png"
   },
-  "{{chrome}}.action": {
-    "default_popup": "src/popup.html"
-  },
+  "web_accessible_resources": [
+    {
+      "resources": ["extension.css", "src/content.tsx"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "js": ["src/content.tsx"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_end"
+    }
+  ],
+  "{{chrome}}.action": {},
   "{{firefox}}.browser_action": {
     "default_popup": "src/popup.html"
   },
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
-  }
+  },
+  "host_permissions": ["http://*/*", "https://*/*"]
 }
