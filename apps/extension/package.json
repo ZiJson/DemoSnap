@@ -8,9 +8,15 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
     "@tailwindcss/vite": "^4.1.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.503.0",
+    "motion": "^12.9.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.316",
@@ -19,6 +25,7 @@
     "@types/webextension-polyfill": "^0.10.0",
     "@vitejs/plugin-react": "^4.2.1",
     "tailwindcss": "^4.1.4",
+    "tw-animate-css": "^1.2.8",
     "typescript": "~5.6.3",
     "vite": "^6.3.2",
     "vite-plugin-web-extension": "^4.1.0",

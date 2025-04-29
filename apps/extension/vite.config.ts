@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import path from "path";
 import react from "@vitejs/plugin-react";
 import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 import tailwindcss from "@tailwindcss/vite";
@@ -25,4 +26,9 @@ export default defineConfig({
       additionalInputs: ["src/content.tsx"],
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
