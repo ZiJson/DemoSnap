@@ -1,8 +1,8 @@
 "use client";
 
-import { Player } from "@remotion/player";
+import { Player, PlayerRef } from "@remotion/player";
 import type { NextPage } from "next";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import {
   defaultMyCompProps,
@@ -20,6 +20,7 @@ import { renderMedia } from "../server-action";
 
 const Home: NextPage = () => {
   const [text, setText] = useState<string>(defaultMyCompProps.title);
+  const playerRef = useRef<PlayerRef>(null);
 
   const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
     return {
@@ -28,10 +29,11 @@ const Home: NextPage = () => {
   }, [text]);
 
   return (
-    <div>
-      <div className="m-auto mb-5 max-w-screen-md">
-        <div className="rounded-geist mt-16 mb-10 overflow-hidden shadow-[0_0_200px_rgba(0,0,0,0.15)]">
+    <div className="">
+      <div className="mx-auto max-w-screen-md">
+        <div className="rounded-geist mt-16 mb-10 overflow-hidden shadow-2xl">
           <Player
+            ref={playerRef}
             component={Main}
             inputProps={inputProps}
             durationInFrames={DURATION_IN_FRAMES}
@@ -43,7 +45,6 @@ const Home: NextPage = () => {
               // but not over inline styles
               width: "100%",
             }}
-            controls
             autoPlay
             loop
           />
@@ -54,7 +55,12 @@ const Home: NextPage = () => {
         <Spacing></Spacing>
         <Spacing></Spacing>
         <Tips></Tips> */}
-        <button onClick={renderMedia}>Render</button>
+        <button
+          onClick={() => playerRef.current?.toggle()}
+          className="cursor-pointer rounded-full bg-black px-4 py-2 text-white"
+        >
+          toggle
+        </button>
       </div>
     </div>
   );

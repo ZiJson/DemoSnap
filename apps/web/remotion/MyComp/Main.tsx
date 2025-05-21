@@ -1,5 +1,14 @@
 import { z } from "zod";
-import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  OffthreadVideo,
+  Sequence,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { CompositionProps } from "../../types/constants";
 import { NextLogo } from "./NextLogo";
 import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
@@ -29,8 +38,11 @@ export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
   });
 
   return (
-    <AbsoluteFill className="bg-white">
-      <Sequence durationInFrames={transitionStart + transitionDuration}>
+    <AbsoluteFill className="border bg-white">
+      <AbsoluteFill>
+        <Img src={staticFile("background.jpg")} />
+      </AbsoluteFill>
+      {/* <Sequence durationInFrames={transitionStart + transitionDuration}>
         <Rings outProgress={logoOut}></Rings>
         <AbsoluteFill className="items-center justify-center">
           <NextLogo outProgress={logoOut}></NextLogo>
@@ -47,7 +59,13 @@ export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
             {title}
           </h1>
         </TextFade>
-      </Sequence>
+      </Sequence> */}
+      <AbsoluteFill className="pointer-events-none flex items-center justify-center">
+        <OffthreadVideo
+          className="pointer-events-none w-[80%] overflow-hidden rounded-3xl border-4 border-black/40"
+          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        />
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
